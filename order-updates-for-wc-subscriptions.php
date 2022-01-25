@@ -12,8 +12,8 @@ class NIT_OUWCS {
 
     public function init(): void
     {
-        add_filter( 'wcs_renewal_order_created', [ $this, 'renewal_order_created'], -1000, 2 );
-        add_action( 'woocommerce_checkout_create_order', [ $this, 'wc_checkout_create_order'], 10, 2 );
+        add_filter( 'wcs_renewal_order_created', array( $this, 'renewal_order_created' ), -1000, 2 );
+        add_action( 'woocommerce_checkout_create_order', array( $this, 'wc_checkout_create_order' ), 10, 2 );
     }
 
     /**
@@ -35,7 +35,7 @@ class NIT_OUWCS {
      * @param $order
      * @return object
      */
-    public function wc_checkout_create_order($order )
+    public function wc_checkout_create_order( $order )
     {
         $this->update_order_item_data( $order, 1 );
 
@@ -46,7 +46,7 @@ class NIT_OUWCS {
      * @param $order
      * @param $box_month_number
      */
-    private function update_order_item_data($order, $box_month_number): void
+    private function update_order_item_data( $order, $box_month_number ): void
     {
         foreach ( $order->get_items() as $item ) {
             $item->set_name( $item->get_name() . " - BoxMonth" . $box_month_number );
