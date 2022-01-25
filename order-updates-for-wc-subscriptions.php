@@ -33,13 +33,10 @@ class NIT_OUWCS {
 
     /**
      * @param $order
-     * @return object
      */
-    public function wc_checkout_create_order( $order )
+    public function wc_checkout_create_order( $order ): void
     {
         $this->update_order_item_data( $order, 1 );
-
-        return $order;
     }
 
     /**
